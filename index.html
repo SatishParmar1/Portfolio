@@ -1,21 +1,77 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="google-adsense-account" content="ca-pub-4386442504389853">
 <title> Who is satish ? </title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<link rel="stylesheet" href="styles/animations.css">
+<link rel="stylesheet" href="styles/ui-enhancements.css">
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 <style>
+/* Clean up styles */
+html {
+    scroll-behavior: auto;
+    height: 100%;
+}
 
 body {
-  font-family: "Lato", sans-serif;
-background-color:black;
+    font-family: "Lato", sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
 }
-*{
-padding:0px 0px;
-margin:0px 0px
+
+/* Main content */
+.main {
+    width: 100%;
+    margin-left: 217px;
+    background-color: black;
+    padding: 20px;
+    display: block;
+    position: relative;
+    /* Remove overflow-y: auto; */
 }
+
+/* Content wrapper */
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Sections spacing */
+#skills, #photos, #contact {
+    margin: 40px 0;
+    width: 100%;
+}
+
+/* Fix content sections */
+.home, .topachive, .topachive12, .projects {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* Remove duplicate body styles */
 .sidenav {
   height: 100%;
   width: 217px;
@@ -59,10 +115,7 @@ i,a:hover {
 }
 
 
-.main {
-  margin-left: 217px;
-background-color:black;
-}
+/* Main styles are defined above */
 
 .headerlogo{
 margin-left:16vw;
@@ -188,15 +241,13 @@ margin-right:100px;
 border-radius:3px;
 }
 .projects{
-position :absolute;
+position :relative;
 display: flex;
-height:100px;
-width:70%;
-margin-top:40px;
+width:100%;
+margin: 40px auto 100px auto;
 background-color:black;
 z-index:2;
 border-radius:10px;
-margin-bottom:100px;
 }
 
 .projectbutton{
@@ -250,7 +301,7 @@ background-color:#818181;
 }
 
 .resume{
-position:absolute;
+position: relative;
 height:50px;
 width:180px;
 background-color:#A0A0A0;
@@ -258,12 +309,12 @@ font-size:25px;
 text-align:center;
 cursor:pointer;
 line-height:50px;
-margin-top:200px;
 z-index:2;
 border-radius:5px;
 padding-left:20px;
 color:black;
 font-size:25px;
+margin: 40px 0;
 }
 
 .resume:hover{
@@ -276,13 +327,15 @@ font-size: 30px;
 
 .resumehead{
 display:flex;
+position: relative;
+margin: 0 0 40px 0;
 }
 
 .headingtop1{
 z-index:2;
 color:#818181;
 font-size:30px;
-margin-top:330px;
+margin-top: 80px;
 }
 
 .underline1{
@@ -721,137 +774,153 @@ margin-left:5vw;
 }
 
 }
-
-
+@media screen and (max-width: 1024px) {
+  .main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+}
 </style>
 </head>
 <body>
+    <!-- Loading animation -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
 
-
-<div class="sidenav" > 
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+        <i class="fa fa-arrow-up"></i>
+    </div>    <div class="sidenav" id="mySidenav"> 
 <div class="sidenavtop" >
-<img class ="logo" src="photo/hello2.gif"  width="210vw" height="170vh">
+<img class="logo" src="https://ik.imagekit.io/rh19kamog/hello2.gif?updatedAt=1749465342831" width="210vw" height="170vh">
 </div>
 
-<button onclick="scrollfunction5()"> <i class="fa fa-home" style="font-size:48px;color:#818181"></i><br> <kbd> Home </kbd></button>
-
-<button onclick="scrollToElement()"> <i class="material-icons" style="font-size:48px;color:#818181">person</i> <br>About</button>
-
-
-<button onclick="scrollfunction3()"> <i class="material-icons" style="font-size:48px;color:#818181">add_a_photo</i><br>Photos</button>
-
-
-<button onclick="scrollfunction4()"><i class="material-icons" style="font-size:48px;color:#818181">email</i><br>Contact</button>
+<a href="#home"><button><i class="fa fa-home" style="font-size:48px;color:#818181"></i><br><kbd>Home</kbd></button></a>
+<a href="#about"><button><i class="material-icons" style="font-size:48px;color:#818181">person</i><br>About</button></a>
+<a href="#photos"><button><i class="material-icons" style="font-size:48px;color:#818181">add_a_photo</i><br>Photos</button></a>
+<a href="#contact"><button><i class="material-icons" style="font-size:48px;color:#818181">email</i><br>Contact</button></a>
 </div>
 
-<div class="main" id ="14">
-<p class ="text" ><b> I'm Satish Parmar. </b> </p>
-<p class ="text2" >Mern and Flutter Developer</p>
-<img class ="headerlogo" src="photo/headerlogo4.jpg"  width="700px" height="700px">
-<p class= "headingtop"> <b>My Name </b></p> 
-<hr class ="underline">
-<div class ="home"> Hello everyone,
-  I am pursuing a B.Tech in Computer Science and Engineering at the Poornima Institute of Engineering and Technology, where I have a strong academic record and a passion for learning.
-   I hold a patent in IoT for designing and developing a knee guard that aids blind individuals in obstacle avoidance, demonstrating my creativity and social impact. As an Internshala Student Partner, I have connected peers with internship opportunities and enhanced my communication and leadership skills. 
-   I have also completed several projects on the platform, using my web development skills in Reactjs and Flutter.
-   I am eager to contribute to the tech world's continuous evolution and make a positive difference.
-</div>
-<div id ="10">
-<p class= "headingtop" > <b>My Skills </b></p> 
-<hr class ="underline">
+<div class="main" id="home">
+    <div class="content-wrapper">
+        <section id="about">
+            <p class ="text gradient-text animate-slideIn"><b> I'm Satish Parmar. </b> </p>
+            <p class ="text2 animate-fadeIn">Mern and Flutter Developer</p>
+            <img class ="headerlogo animate-float" src="photo/headerlogo4.jpg"  width="700px" height="700px">
+            <p class= "headingtop"> <b>My Name </b></p> 
+            <hr class ="underline">
+            <div class ="home"> Hello everyone,
+              I am pursuing a B.Tech in Computer Science and Engineering at the Poornima Institute of Engineering and Technology, where I have a strong academic record and a passion for learning.
+               I hold a patent in IoT for designing and developing a knee guard that aids blind individuals in obstacle avoidance, demonstrating my creativity and social impact. As an Internshala Student Partner, I have connected peers with internship opportunities and enhanced my communication and leadership skills. 
+               I have also completed several projects on the platform, using my web development skills in Reactjs and Flutter.
+               I am eager to contribute to the tech world's continuous evolution and make a positive difference.
+            </div>
+        </section>
+        <section id="skills">
+                <p class="headingtop"><b>My Skills</b></p>
+                <hr class ="underline">
 
-<p class="subheading" > Web Designer</p>
-<div class ="outside1">
-<div class="inside1"></div>
+                <p class="subheading" > Web Designer</p>
+                <div class ="outside1">
+                <div class="inside1 skill-bar"></div>
 
-<div>
-<p class="subheading2" > Flutter Development</p>
-<div class ="outside2">
-<div class="inside2">
-</div>
-<div>
-<p class="subheading2" > Java</p>
-<div class ="outside3">
-<div class="inside3">
-</div>
-<div>
-</div>
+                <div>
+                <p class="subheading2" > Flutter Development</p>
+                <div class ="outside2">
+                <div class="inside2">
+                </div>
+                <div>
+                <p class="subheading2" > Java</p>
+                <div class ="outside3">
+                <div class="inside3">
+                </div>
+                <div>
+                </div>
 
-<p class="subheading2" >Firebase</p>
-<div class ="outside4">
-<div class="inside4">
-</div>
-<div>
-</div>
+                <p class="subheading2" >Firebase</p>
+                <div class ="outside4">
+                <div class="inside4">
+                </div>
+                <div>
+                </div>
 
-</div>
-<div class ="projects">
-<div class ="projectbutton" type = "button">
-<h3>5+</h3><h4> Web-Projects</h4>
-</div>
-<div class ="projectbutton2" type = "button">
-<h3>3+</h3><h4>Flutter Projects</h4>
-</div>
-<div class ="projectbutton3" type = "button">
-<h3>2+</h3><h4> IoT Projects</h4>
-</div>
- </div>
+                </div>
+                <div class ="projects glass-effect">
+                <div class ="projectbutton hover-scale" type = "button">
+                <h3>5+</h3><h4> Web-Projects</h4>
+                </div>
+                <div class ="projectbutton2 hover-scale" type = "button">
+                <h3>3+</h3><h4>Flutter Projects</h4>
+                </div>
+                <div class ="projectbutton3 hover-scale" type = "button">
+                <h3>2+</h3><h4> IoT Projects</h4>
+                </div>
+                 </div>
 
 
-<div class="resumehead">
-<a href="photo/resume.pdf" > 
-<div class ="resume" type ="button" >
-<i class="fa fa-download" style="font-size:30px; color:black"></i> <kbd> Resume</kbd>
-</div>
-</a>
-</div>
+                <div class="resumehead">
+                <a href="photo/resume.pdf" > 
+                <div class ="resume" type ="button" >
+                <i class="fa fa-download" style="font-size:30px; color:black"></i> <kbd> Resume</kbd>
+                </div>
+                </a>
+                </div>
 
-<p class= "headingtop1"> <b>My Work</b></p> 
-<hr class ="underline1">
-<div class="topachive">
-<a href="https://drive.google.com/file/d/1rVSYGxFFDSulH_nSD8-QUoCf-IA9_CmK/view" >
-<div class=" achive">
-<img class="Iot" src="photo/news.jpg"  width="350px" height="200px">
-<h3 class ="achivetext"> Trend Wave(News App)</h3>
-</div> 
-</a>
-<a href="https://drive.google.com/file/d/1NQ-z8KPD4YIl_-CSoq7L9Ky2SCsGBicP/view?usp=sharing" >
-<div class=" achive2">
-<img class="Iot" src="photo/shreesai.jpg"  width="350px" height="200px">
-<h3 class ="achivetext"> Medical Delivery App</h3>
-</div> 
-</a>
-</div>
+                <p class= "headingtop1"> <b>My Work</b></p> 
+                <hr class ="underline1">
+                <div class="topachive">
+                <a href="https://drive.google.com/file/d/1rVSYGxFFDSulH_nSD8-QUoCf-IA9_CmK/view" class="animate-fadeIn">
+                <div class=" achive project-card">
+                <img class="Iot" src="photo/news.jpg"  width="350px" height="200px">
+                <h3 class ="achivetext"> Trend Wave(News App)</h3>
+                </div> 
+                </a>
+                <a href="https://drive.google.com/file/d/1NQ-z8KPD4YIl_-CSoq7L9Ky2SCsGBicP/view?usp=sharing" class="animate-fadeIn">
+                <div class=" achive2 project-card">
+                <img class="Iot" src="photo/shreesai.jpg"  width="350px" height="200px">
+                <h3 class ="achivetext"> Medical Delivery App</h3>
+                </div> 
+                </a>
+                </div>
 
-<div class="topachive12">
-<a href=" https://satishparmar1.github.io/Proflamingo/" >
-<div class=" achive">
-<img class="Iot" src="photo/flamingo.jpg"  width="350px" height="200px">
-<h3 class ="achivetext">Proflamingo(Education Website)</h3>
-</div> 
-</a>
-<a href="https://drive.google.com/file/d/1mZy8x7E-3vFu-RmhEyVLmf8H6naHR9wC/view" >
-<div class=" achive2">
-<img class="Iot" src="photo/SKY.jpg" width="350px" height="200px">
-<h3 class ="achivetext">SkyView(Weather App)</h3>
-</div> 
-</a>
-   </div>
+                <div class="topachive12">
+                <a href=" https://satishparmar1.github.io/Proflamingo/" class="animate-fadeIn">
+                <div class=" achive project-card">
+                <img class="Iot" src="photo/flamingo.jpg"  width="350px" height="200px">
+                <h3 class ="achivetext">Proflamingo(Education Website)</h3>
+                </div> 
+                </a>
+                <a href="https://drive.google.com/file/d/1mZy8x7E-3vFu-RmhEyVLmf8H6naHR9wC/view" class="animate-fadeIn">
+                <div class=" achive2 project-card">
+                <img class="Iot" src="photo/SKY.jpg" width="350px" height="200px">
+                <h3 class ="achivetext">SkyView(Weather App)</h3>
+                </div> 
+                </a>
+                   </div>
 
-   <div class="topachive12">
-    <a href="https://drive.google.com/file/d/1U7YaDolHBKtYE0lwaUeoHfv62fsdaMdc/view?usp=sharing" >
-    <div class=" achive">
-    <img class="Iot" src="photo/iot1.jpg"  width="350px" height="200px">
-    <h3 class ="achivetext">Knee Guard For Blind Peoples</h3>
-    </div> 
-    </a>
-    <a href="https://github.com/SatishParmar1" >
-    <div class=" achive2">
-    <img class="Iot" src="photo/working1.jpg" width="350px" height="200px">
-    <h3 class ="achivetext">Working in Progress</h3>
-    </div> 
-    </a>
-       </div>
+                   <div class="topachive12">
+                    <a href="https://drive.google.com/file/d/1U7YaDolHBKtYE0lwaUeoHfv62fsdaMdc/view?usp=sharing" class="animate-fadeIn">
+                    <div class=" achive project-card">
+                    <img class="Iot" src="photo/iot1.jpg"  width="350px" height="200px">
+                    <h3 class ="achivetext">Knee Guard For Blind Peoples</h3>
+                    </div> 
+                    </a>
+                    <a href="https://github.com/SatishParmar1" class="animate-fadeIn">
+                    <div class=" achive2 project-card">
+                    <img class="Iot" src="photo/working1.jpg" width="350px" height="200px">
+                    <h3 class ="achivetext">Working in Progress</h3>
+                    </div> 
+                    </a>
+                       </div>
 
 
 
@@ -880,7 +949,7 @@ margin-left:5vw;
 </a>
 <a href="tel:+919785470525">
 <div  class="area" type="email">
-<i class="material-icons" style="font-size:36px; color:gray">call</i> &nbsp;  &nbsp; <kbd class="inarea">+91  9785470525</kbd>
+<i class="material-icons" style="font-size:36px;color:gray">call</i> &nbsp;  &nbsp; <kbd class="inarea">+91  9785470525</kbd>
 </div>
 </a>
 
@@ -894,39 +963,26 @@ margin-left:5vw;
 <p class= "headingtop4"> <b> Send Message</b></p> 
 <hr class ="underline4">
 <div class="topachive4">
-<form action="hello.html" method="post">
-<table>
-<tr>
-<td>
-<input class ="input" type ="text" placeholder="First Name" > </input>
-</td>
-</tr>
-<tr>
-<td>
-<input class ="input" type ="text" placeholder="Last  Name" > </input>
-</td>
-</tr>
-<tr>
-<td>
-<input type ="email" placeholder="Email ID" > </input>
-</td>
-</tr>
-<tr>
-<td>
-<input type ="number" placeholder="Mobile No." > </input>
-</td>
-</tr>
-<tr>
-<td>
-<textarea id="subject"  placeholder="Write something.."></textarea>
-</td>
-</tr>
-<tr>
-<td>
-<input  type = submit  value="Send Message"> 
-</td>
-</tr>
-</table>
+<form id="contactForm" onsubmit="submitForm(event)">
+    <table>
+        <tr><td><input class="input" type="text" id="firstName" name="firstName" 
+            pattern="[A-Za-z ]+" placeholder="First Name" required 
+            onkeypress="return /[A-Za-z ]/i.test(event.key)"></td></tr>
+            
+        <tr><td><input class="input" type="text" id="lastName" name="lastName" 
+            pattern="[A-Za-z ]+" placeholder="Last Name" required 
+            onkeypress="return /[A-Za-z ]/i.test(event.key)"></td></tr>
+            
+        <tr><td><input type="email" id="email" placeholder="Email ID" required></td></tr>
+        
+        <tr><td><input type="text" id="mobile" placeholder="Mobile No." 
+            maxlength="10" pattern="[6-9][0-9]{9}" required 
+            onkeypress="return /[0-9]/i.test(event.key)"></td></tr>
+            
+        <tr><td><textarea id="message" placeholder="Write something.." required></textarea></td></tr>
+        <tr><td><input type="submit" value="Send Message"></td></tr>
+    </table>
+</form>
 </div>
 <p class= "headingtop4"> <b> </b></p> 
 <hr class ="underline5">
@@ -947,33 +1003,87 @@ margin-left:5vw;
 
 
 
-<script>
-  
-function scrollFunction() {
-  return window.pageYOffset > 100; // return true if the user has scrolled down by at least 100 pixels
+<script>// Loading animation
+window.addEventListener('load', () => {
+    document.querySelector('.loader').style.display = 'none';
+});
+
+// Initialize EmailJS with public key
+emailjs.init("1Hje7WDp009UIiVOr");
+
+function submitForm(event) {
+  event.preventDefault();
+
+  const templateParams = {
+    name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+    email: document.getElementById('email').value,
+    mobile: document.getElementById('mobile').value,
+    message: document.getElementById('message').value,
+    time: new Date().toLocaleString(),
+  };
+
+  emailjs.send(
+    "service_vulgof5", 
+    "template_xqmowln",
+    templateParams
+  ).then(
+      (response) => {
+      console.log('SUCCESS!', response.status, response.text);
+      Toastify({
+        text: "Message sent successfully!",
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        backgroundColor: "#4CAF50",
+      }).showToast();
+      document.getElementById('contactForm').reset();
+    }, (error) => {
+      console.error('FAILED...', error);
+      Toastify({
+        text: "Message failed to send. Please try again later.",
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        backgroundColor: "#f44336",
+      }).showToast();
+    });
 }
 
-function scrollToElement() {
-  let element = document.getElementById("10");
-  let offset = element.offsetTop; 
-  window.scrollTo(0, offset);
+// Add intersection observer for animations
+const animateOnScroll = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fadeIn');
+        }
+    });
+}, { threshold: 0.1 });
+
+// Observe elements
+document.querySelectorAll('.topachive, .achive, .photo1, .photo2, .photo3, .photo4').forEach((el) => {
+    animateOnScroll.observe(el);
+});
+
+function toggleSidebar() {
+    const sidenav = document.getElementById("mySidenav");
+    const main = document.querySelector(".main");
+    
+    sidenav.classList.toggle("minimized");
+    main.classList.toggle("expanded");
+    
+    // Save state to localStorage
+    const isMinimized = sidenav.classList.contains("minimized");
+    localStorage.setItem("sidebarMinimized", isMinimized);
 }
 
-function scrollfunction3() {
-  let element = document.getElementById("11");
-  let offset = element.offsetTop; 
-  window.scrollTo(0, offset);
-}
-function scrollfunction4() {
-    let element = document.getElementById("12");
-  let offset = element.offsetTop; 
-  window.scrollTo(0, offset);
-}
-function scrollfunction5() {
-    let element = document.getElementById("14");
-  let offset = element.offsetTop; 
-  window.scrollTo(0, offset);
-}
+// Restore sidebar state on page load
+window.addEventListener('load', () => {
+    const isMinimized = localStorage.getItem("sidebarMinimized") === "true";
+    if (isMinimized) {
+        document.getElementById("mySidenav").classList.add("minimized");
+        document.querySelector(".main").classList.add("expanded");
+    }
+});
 </script>
+<script type="text/javascript" src="js/main.js" defer></script>
 </body>
-</head>
+</html>

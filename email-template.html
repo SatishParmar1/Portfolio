@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #ffffff;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 0 0 10px 10px;
+        }
+        .message-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #333333;
+        }
+        .sender-info {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        .detail {
+            margin: 10px 0;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+            width: 100px;
+            display: inline-block;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 12px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <img src="https://ik.imagekit.io/rh19kamog/hello2.gif?updatedAt=1749465342831" alt="Logo" class="logo">
+            <h1>New Message Received</h1>
+            <p>{{time}}</p>
+        </div>
+        
+        <div class="content">
+            <div class="sender-info">
+                <h2>Sender Information</h2>
+                <div class="detail">
+                    <span class="label">Name:</span>
+                    <span>{{name}}</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Email:</span>
+                    <span>{{email}}</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Mobile:</span>
+                    <span>{{mobile}}</span>
+                </div>
+            </div>
+
+            <div class="message-box">
+                <h3>Message:</h3>
+                <p>{{message}}</p>
+            </div>
+
+            <div class="footer">
+                <p>This email was sent from your portfolio website contact form</p>
+                <p>© 2023-2025 Satish Parmar. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

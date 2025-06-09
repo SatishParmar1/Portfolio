@@ -1,0 +1,243 @@
+/* Modern UI Elements */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #818181, #f1f1f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Animated Progress Bars */
+.skill-bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% { transform: translateX(100%); }
+}
+
+/* Card Styles */
+.project-card {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Modern Button Styles */
+.modern-button {
+    background: linear-gradient(45deg, #818181, #a0a0a0);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modern-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Form Error Styles */
+.input-error {
+    border: 2px solid #ff4444 !important;
+    background-color: rgba(255, 68, 68, 0.1) !important;
+    color: #fff !important;
+}
+
+.input-error::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 4px;
+    padding: 4px 8px;
+    background-color: rgba(255, 68, 68, 0.1);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Focus state for error inputs */
+.input-error:focus {
+    border-color: #ff4444 !important;
+    box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2) !important;
+    outline: none;
+}
+
+.modern-button.loading {
+    background: linear-gradient(45deg, #666, #888);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.modern-button.success {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+}
+
+.modern-button.error {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+}
+
+/* Form Input Styles */
+input[type="text"], 
+input[type="email"], 
+input[type="number"], 
+textarea {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+input:invalid {
+    box-shadow: none;
+}
+
+/* Name input specific styles */
+input[name="firstName"],
+input[name="lastName"] {
+    text-transform: capitalize;
+}
+
+/* Number input specific styles */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Gradient Borders */
+.gradient-border {
+    position: relative;
+    border-radius: 10px;
+    padding: 1px;
+    background: linear-gradient(45deg, #818181, transparent);
+}
+
+/* Image hover effects */
+.image-hover {
+    transition: all 0.3s ease;
+    filter: grayscale(50%);
+}
+
+.image-hover:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+/* Scroll animations */
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced form inputs */
+.input-wrapper {
+    position: relative;
+    margin: 1.5rem 0;
+}
+
+.input-wrapper label {
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    background: black;
+    padding: 0 5px;
+    font-size: 12px;
+    color: #818181;
+}
+
+/* Experience Section Styles */
+.experience-container {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.experience-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.experience-item h3 {
+    color: #f1f1f1;
+    margin-bottom: 0.5rem;
+}
+
+.experience-item .role {
+    color: #818181;
+    font-style: italic;
+}
+
+.experience-item .date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.achievement-list {
+    list-style: none;
+    padding: 0;
+}
+
+.achievement-list li {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-stack {
+    color: #818181;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
