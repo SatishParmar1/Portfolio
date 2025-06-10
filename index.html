@@ -28,7 +28,7 @@ html {
 
 body {
     font-family: "Lato", sans-serif;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -36,12 +36,17 @@ body {
     position: relative;
 }
 
+/* Ensure background is black */
+html, body {
+    background: #000 !important;
+}
+
 /* Main content */
 .main {
     width: 100%;
     margin-left: 217px;
     background-color: black;
-    padding: 20px;
+    padding: 0px;
     display: block;
     position: relative;
     /* Remove overflow-y: auto; */
@@ -50,9 +55,9 @@ body {
 /* Content wrapper */
 .content-wrapper {
     width: 100%;
-    max-width: 1200px;
+    max-width:100vw;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0px;
     position: relative;
     box-sizing: border-box;
 }
@@ -66,9 +71,9 @@ body {
 /* Fix content sections */
 .home, .topachive, .topachive12, .projects {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 20px auto;
+    width: 90%;
+    max-width:80vw;
+    margin: 0px;
 }
 
 /* Remove duplicate body styles */
@@ -787,6 +792,90 @@ margin-left:5vw;
     width: 100% !important;
     box-sizing: border-box;
   }
+  .sidenav {
+    display: none !important;
+  }
+  .bottom-nav {
+    display: flex !important;
+  }
+}
+
+/* Photos section: remove left margin from images */
+.photo1, .photo3 {
+    margin-left: 0;
+}
+.photo2, .photo4 {
+    margin-left: 10px;
+}
+
+/* Contact and Send Message section: reduce left margin */
+.area, .headingtop3, .headingtop4, .underline3, .underline4, .topachive4, #contactForm {
+    margin-left: 0 !important;
+}
+
+/* Remove left margin from Send Message form and underline */
+#contactForm, .underline4 {
+    margin-left: 0 !important;
+}
+
+.projectbutton, .projectbutton2, .projectbutton3 {
+    background: #818181;
+    color: #fff;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(129,129,129,0.08);
+}
+.projectbutton:hover, .projectbutton2:hover, .projectbutton3:hover {
+    filter: brightness(1.15) drop-shadow(0 0 10px #fff3);
+    box-shadow: 0 4px 16px rgba(129,129,129,0.18);
+    transform: translateY(-6px) scale(1.04);
+    z-index: 3;
+    background: #6e6e6e;
+}
+.projectbutton h3, .projectbutton2 h3, .projectbutton3 h3 {
+    font-size: 2.2rem;
+    margin: 0;
+    color: #111;
+    font-weight: bold;
+    text-shadow: 0 2px 8px #2222;
+}
+.projectbutton h4, .projectbutton2 h4, .projectbutton3 h4 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: black;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 4px #2228;
+}
+
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 60px;
+  background: #111;
+  z-index: 1001;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+.bottom-nav a {
+  color: #818181;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  flex: 1;
+  padding: 6px 0;
+}
+.bottom-nav a.active, .bottom-nav a:active, .bottom-nav a:focus {
+  color: #f1f1f1;
+}
+.bottom-nav i {
+  font-size: 24px;
+  margin-bottom: 2px;
 }
 </style>
 </head>
@@ -808,7 +897,15 @@ margin-left:5vw;
 <a href="#about"><button><i class="material-icons" style="font-size:48px;color:#818181">person</i><br>About</button></a>
 <a href="#photos"><button><i class="material-icons" style="font-size:48px;color:#818181">add_a_photo</i><br>Photos</button></a>
 <a href="#contact"><button><i class="material-icons" style="font-size:48px;color:#818181">email</i><br>Contact</button></a>
-</div>
+</div> <!-- end sidenav -->
+
+<!-- Bottom nav for mobile -->
+<nav class="bottom-nav">
+  <a href="#home"><i class="fa fa-home"></i><span>Home</span></a>
+  <a href="#about"><i class="material-icons">person</i><span>About</span></a>
+  <a href="#photos"><i class="material-icons">add_a_photo</i><span>Photos</span></a>
+  <a href="#contact"><i class="material-icons">email</i><span>Contact</span></a>
+</nav>
 
 <div class="main" id="home">
     <div class="content-wrapper">
@@ -1082,6 +1179,20 @@ window.addEventListener('load', () => {
         document.getElementById("mySidenav").classList.add("minimized");
         document.querySelector(".main").classList.add("expanded");
     }
+});
+
+// Smooth hover effect for project buttons
+const projectButtons = document.querySelectorAll('.projectbutton, .projectbutton2, .projectbutton3');
+projectButtons.forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+        btn.style.transition = 'background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s';
+        btn.style.boxShadow = '0 4px 16px rgba(129,129,129,0.18)';
+        btn.style.transform = 'translateY(-6px) scale(1.04)';
+    });
+    btn.addEventListener('mouseleave', () => {
+        btn.style.boxShadow = '0 2px 8px rgba(129,129,129,0.08)';
+        btn.style.transform = 'none';
+    });
 });
 </script>
 <script type="text/javascript" src="js/main.js" defer></script>
