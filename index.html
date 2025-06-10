@@ -47,19 +47,26 @@ html, body {
     margin-left: 217px;
     background-color: black;
     padding: 0px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     position: relative;
-    /* Remove overflow-y: auto; */
 }
 
 /* Content wrapper */
 .content-wrapper {
     width: 100%;
-    max-width:100vw;
+    max-width: 100vw;
     margin: 0 auto;
     padding: 0px;
     position: relative;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Sections spacing */
@@ -72,8 +79,12 @@ html, body {
 .home, .topachive, .topachive12, .projects {
     position: relative;
     width: 90%;
-    max-width:80vw;
-    margin: 0px;
+    max-width: 80vw;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Remove duplicate body styles */
@@ -246,13 +257,14 @@ margin-right:100px;
 border-radius:3px;
 }
 .projects{
-position :relative;
+position: relative;
 display: flex;
-width:100%;
+width: 100%;
 margin: 40px auto 100px auto;
-background-color:black;
-z-index:2;
-border-radius:10px;
+background-color: black;
+z-index: 2;
+border-radius: 10px;
+flex-direction: row;
 }
 
 .projectbutton{
@@ -349,22 +361,26 @@ margin-top:3px;
 }
 
 .topachive{
-display:flex;
-margin-top:40px;
-height:auto;
-width:auto;
-background-color:black;
+display: flex;
+margin-top: 40px;
+height: auto;
+width: auto;
+background-color: black;
+flex-wrap: wrap;
+flex-direction: row;
 }
 
 .topachive12{
-display:flex;
-margin-top:40px;
-height:auto;
-width:auto;
-background-color:black;
+display: flex;
+margin-top: 40px;
+height: auto;
+width: auto;
+background-color: black;
+flex-direction: row;
+flex-wrap: wrap;
 }
 .achive{
-height:240px;
+height:270px;
 width:95%;
 background-color:#818181;
 z-index:2;
@@ -377,7 +393,7 @@ margin-left:20px;
 border-radius :10px;
 }
 .achive2{
-height:240px;
+height:270px;
 width:71.5%;
 background-color:#818181;
 z-index:2;
@@ -877,6 +893,43 @@ margin-left:5vw;
   font-size: 24px;
   margin-bottom: 2px;
 }
+
+.mobile-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.04);
+    border: 2px solid #818181;
+    border-radius: 8px;
+    padding: 0 10px;
+    margin: 8px 0;
+    height: 44px;
+    width: 850px;
+    transition: border 0.3s;
+}
+.mobile-input-wrapper:focus-within {
+    border: 2px solid #4CAF50;
+}
+.mobile-icon {
+    color: #818181;
+    font-size: 22px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+.mobile-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 18px;
+    width: 100%;
+    padding: 8px 0;
+    letter-spacing: 1px;
+}
+.mobile-input::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -1065,17 +1118,18 @@ margin-left:5vw;
         <tr><td><input class="input" type="text" id="firstName" name="firstName" 
             pattern="[A-Za-z ]+" placeholder="First Name" required 
             onkeypress="return /[A-Za-z ]/i.test(event.key)"></td></tr>
-            
         <tr><td><input class="input" type="text" id="lastName" name="lastName" 
             pattern="[A-Za-z ]+" placeholder="Last Name" required 
             onkeypress="return /[A-Za-z ]/i.test(event.key)"></td></tr>
-            
         <tr><td><input type="email" id="email" placeholder="Email ID" required></td></tr>
-        
-        <tr><td><input type="text" id="mobile" placeholder="Mobile No." 
-            maxlength="10" pattern="[6-9][0-9]{9}" required 
-            onkeypress="return /[0-9]/i.test(event.key)"></td></tr>
-            
+        <tr><td>
+            <div class="mobile-input-wrapper">
+          
+                <input type="text" id="mobile" class="mobile-input" placeholder="Mobile No." 
+                    maxlength="10" pattern="[6-9][0-9]{9}" required 
+                    onkeypress="return /[0-9]/i.test(event.key)">
+            </div>
+        </td></tr>
         <tr><td><textarea id="message" placeholder="Write something.." required></textarea></td></tr>
         <tr><td><input type="submit" value="Send Message"></td></tr>
     </table>
